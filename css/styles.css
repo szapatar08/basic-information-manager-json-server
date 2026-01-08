@@ -30,9 +30,37 @@ form input {
 
 form #register {
     cursor: pointer;
+    background-color: #868686;
+}
+
+form #register:hover {
+    background-color: #d9d9d9;
 }
 
 /*Table*/
+
+section #search-form {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+section #search {
+    border: none;
+    width: 80%;
+}
+
+section #search-btn {
+    width: 20%;
+    background-color: #d9d9d9;
+    cursor: pointer;
+}
+
+section #search-btn:hover {
+    background-color: #868686;
+}
+
 section table {
     width: 100%;
     background-color: white;
