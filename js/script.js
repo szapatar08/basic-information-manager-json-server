@@ -5,11 +5,20 @@ const inputLastname = document.querySelector("#lastname");
 const registerBtn = document.querySelector("#register");
 const tableBody = document.querySelector("#table-body");
 const app_url = 'http://localhost:3000/';
+const searchBtn = document.querySelector("#search-btn");
 getElement("users")
 
 registerBtn.addEventListener("click",function() {
     postData("users")
     getElement("users")
+    inputName.value = "";
+    inputLastname.value = "";
+})
+
+searchBtn.addEventListener("click", function() {
+    const inputSearch = document.querySelector("#search");
+    getElement("users?name=" + inputSearch.value)
+    inputSearch.value = "";
 })
 
 //Functions
@@ -44,14 +53,14 @@ function postData(data) {
         })
     })
     .then(res => res.json())
-    .then(data => data)
+    .then(data => data);
 }
 
 function deleteData(data) {
     fetch(app_url + data, {
         method: "DELETE"
     })
-    .then(data => data)
+    .then(data => data);
 }
 
 function deleteBtn(id) {
