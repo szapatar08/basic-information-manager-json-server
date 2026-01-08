@@ -45,3 +45,15 @@ section table th, td {
     border: 1px solid #000;
     width: 20%;
 }
+
+.delete {
+    background-color: rgb(255, 78, 78);
+    padding: 10px 20px;
+    margin: 10px 0;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

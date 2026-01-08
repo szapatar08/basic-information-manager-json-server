@@ -5,16 +5,16 @@ const inputLastname = document.querySelector("#lastname");
 const registerBtn = document.querySelector("#register");
 const tableBody = document.querySelector("#table-body");
 const app_url = 'http://localhost:3000/';
-getElement()
+getElement("users")
 
 registerBtn.addEventListener("click",function() {
-    postData()
-    getElement()
+    postData("users")
+    getElement("users")
 })
 
 //Functions
-function getElement() {
-    fetch(app_url + "users")
+function getElement(data) {
+    fetch(app_url + data)
         .then(res => res.json())
         .then(data => {
             let elements = "";
@@ -24,7 +24,7 @@ function getElement() {
                     <td>${user.id}</td>
                     <td>${user.name}</td>
                     <td>${user.lastname}</td>
-                    <td>button</td>
+                    <td><button class="delete" onclick="deleteBtn('${user.id}')">Delete</button></td>
                 </tr>
                 `
             });
@@ -32,8 +32,8 @@ function getElement() {
         });
 }
 
-function postData() {
-    fetch(app_url + "users", {
+function postData(data) {
+    fetch(app_url + data, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -45,4 +45,16 @@ function postData() {
     })
     .then(res => res.json())
     .then(data => data)
+}
+
+function deleteData(data) {
+    fetch(app_url + data, {
+        method: "DELETE"
+    })
+    .then(data => data)
+}
+
+function deleteBtn(id) {
+    deleteData("users/" + id)
+    getElement("users")
 }
