@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 60vh;
+    width: 80vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20vh 10vw;
+    background-color: #d9d9d9;
+}
+
+/*Form*/
+form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 20px;
+}
+
+form input {
+    padding: 0 10px;
+    height: 5vh;
+    border-radius: 20px;
+    font-size: 20px;
+    border: 1px solid #000;
+}
+
+form #register {
+    cursor: pointer;
+}
+
+/*Table*/
+section table {
+    width: 100%;
+    background-color: white;
+    padding: 1vh;
+    border-radius: 20px;
+    text-align: center;
+}
+
+section table th, td {
+    border: 1px solid #000;
+    width: 20%;
+}
