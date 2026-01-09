@@ -15,7 +15,7 @@ registerBtn.addEventListener("click",function() {
 
 searchBtn.addEventListener("click", function() {
     const inputSearch = document.querySelector("#search");
-    getElement("users?name=" + inputSearch.value)
+    getElement("users?q=" + inputSearch.value)
     inputSearch.value = "";
 })
 
