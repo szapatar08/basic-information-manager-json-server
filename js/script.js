@@ -1,5 +1,3 @@
-let users = [];
-let elements = "";
 const inputName = document.querySelector("#name");
 const inputLastname = document.querySelector("#lastname");
 const registerBtn = document.querySelector("#register");
