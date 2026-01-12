@@ -4,18 +4,18 @@ const registerBtn = document.querySelector("#register");
 const tableBody = document.querySelector("#table-body");
 const app_url = 'http://localhost:3000/';
 const searchBtn = document.querySelector("#search-btn");
+
 getElement(app_url + "users")
 
 registerBtn.addEventListener("click",function() {
-    postData("users")
-    getElement("users")
+    postElement(app_url + "users", inputName.value, inputLastname.value)
     inputName.value = "";
     inputLastname.value = "";
 })
 
 searchBtn.addEventListener("click", function() {
     const inputSearch = document.querySelector("#search");
-    getElement("users?q=" + inputSearch.value)
+    getElement(url + "users?q=" + inputSearch.value)
     inputSearch.value = "";
 })
 
@@ -34,10 +34,29 @@ async function getElement(url) {
             <td><button class="delete" onclick="deleteBtn('${user.id}')">Delete</button></td>
         </tr>
         `;
+        tableBody.innerHTML = items;
     }
-    tableBody.innerHTML = items;
+    return items
   } catch (e) {
     console.error(e);
+  }
+}
+
+async function postElement(url, newName, newLastname) {
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: newName,
+        lastname: newLastname
+      })
+    });
+    const data = await res.json();
+  } catch (error) {
+    console.error('Error en POST:', error);
   }
 }
 
