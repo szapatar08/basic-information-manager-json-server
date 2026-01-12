@@ -31,7 +31,7 @@ async function getElement(url) {
             <td>${user.id}</td>
             <td>${user.name}</td>
             <td>${user.lastname}</td>
-            <td><button class="delete" onclick="deleteBtn('${user.id}')">Delete</button></td>
+            <td><button class="delete" onclick="deleteData('${url}/${user.id}')">Delete</button></td>
         </tr>
         `;
         tableBody.innerHTML = items;
@@ -60,7 +60,12 @@ async function postElement(url, newName, newLastname) {
   }
 }
 
-function deleteBtn(id) {
-    deleteData("users/" + id)
-    getElement("users")
+async function deleteData(url) {
+    try {
+    await fetch(url, {
+      method: 'DELETE'
+    });
+  } catch (error) {
+    console.error('Error en DELETE:', error);
+  }
 }
