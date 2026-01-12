@@ -1,48 +1,28 @@
-const inputName = document.querySelector("#name");
-const inputLastname = document.querySelector("#lastname");
-const registerBtn = document.querySelector("#register");
-const tableBody = document.querySelector("#table-body");
-const app_url = 'http://localhost:3000/';
-const searchBtn = document.querySelector("#search-btn");
-
-getElement(app_url + "users")
-
-registerBtn.addEventListener("click",function() {
-    postElement(app_url + "users", inputName.value, inputLastname.value)
-    inputName.value = "";
-    inputLastname.value = "";
-})
-
-searchBtn.addEventListener("click", function() {
-    const inputSearch = document.querySelector("#search");
-    getElement(app_url + "users?q=" + inputSearch.value)
-    inputSearch.value = "";
-})
-
 //Functions
-async function getElement(url) {
+export async function getElement(url, htmlInnerElement) {
     let items = "";
   try {
     const res = await fetch(url);
     const users = await res.json();
+    let user = "";
     for (user of users) {
         items += `
         <tr>
             <td>${user.id}</td>
             <td>${user.name}</td>
             <td>${user.lastname}</td>
-            <td><button class="delete" onclick="deleteData('${url}/${user.id}')">Delete</button></td>
+            <td><button class="delete" id="${user.id}">Delete</button></td>
         </tr>
         `;
-        tableBody.innerHTML = items;
+        htmlInnerElement.innerHTML = items;
     }
     return items
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error('Error en POST:', error);
   }
 }
 
-async function postElement(url, newName, newLastname) {
+export async function postElement(url, newName, newLastname) {
   try {
     const res = await fetch(url, {
       method: 'POST',
@@ -60,7 +40,7 @@ async function postElement(url, newName, newLastname) {
   }
 }
 
-async function deleteData(url) {
+export async function deleteData(url) {
     try {
     await fetch(url, {
       method: 'DELETE'
