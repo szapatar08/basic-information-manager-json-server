@@ -11,6 +11,7 @@ export async function getElement(url, htmlInnerElement) {
             <td>${user.id}</td>
             <td>${user.name}</td>
             <td>${user.lastname}</td>
+            <td><button class="edit" id="${user.id}">Edit</button></td>
             <td><button class="delete" id="${user.id}">Delete</button></td>
         </tr>
         `;

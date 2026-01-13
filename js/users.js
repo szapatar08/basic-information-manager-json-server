@@ -29,3 +29,10 @@ tableBody.addEventListener("click", function(e) {
         deleteData(app_url + "users/" + data.getAttribute("id"))
     }
 })
+
+tableBody.addEventListener("click", function(e) {
+    const data = e.composedPath()[0];
+    if(Array.from(data.classList).includes("edit")) {
+        console.log("Edit")
+    }
+})
