@@ -14,9 +14,9 @@ export async function getElement(url, htmlInnerElement) {
             <td><button class="delete" id="${user.id}">Delete</button></td>
         </tr>
         `;
-        htmlInnerElement.innerHTML = items;
+        localStorage.setItem(user.id, `${user.name} ${user.lastname}`)
     }
-    return items
+    htmlInnerElement.innerHTML = items;
   } catch (error) {
     console.error('Error en POST:', error);
   }
