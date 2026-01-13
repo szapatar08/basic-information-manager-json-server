@@ -108,7 +108,3 @@ section table th, td {
 section table input {
     width: 70%;
 }
-
-section table input::placeholder {
-    color: #000;
-}

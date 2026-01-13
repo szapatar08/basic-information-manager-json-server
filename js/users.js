@@ -52,7 +52,7 @@ tableBody.addEventListener("click", function(e) {
     const userLast = document.getElementById(`lastname-${id}`);
     if(Array.from(data.classList).includes("save")) {
         console.log(userName.getAttribute("placeholder"), userLast.getAttribute("placeholder"))
-        if (userName.value & userLast.value) {
+        if (userName.value && userLast.value) {
             putData(app_url + "users/" + id, userName.value, userLast.value)
         } else if (userName.value) {
             putData(app_url + "users/" + id, userName.value, userLast.getAttribute("placeholder"))
