@@ -3,7 +3,7 @@ import {getElement, postElement, deleteData, putData} from "./script.js"
 const registerBtn = document.querySelector("#register");
 const tableBody = document.querySelector("#table-body");
 const app_url = 'http://localhost:3000/';
-const searchBtn = document.querySelector("#search-btn");
+const inputSearch = document.querySelector("#search");
 
 getElement(app_url + "users", tableBody)
 
@@ -16,11 +16,12 @@ registerBtn.addEventListener("click",function() {
     inputLastname.value = "";
 })
 
-searchBtn.addEventListener("click", function() {
-    const inputSearch = document.querySelector("#search");
-
+inputSearch.addEventListener("change", function() {
     getElement(app_url + "users?q=" + inputSearch.value, tableBody)
     inputSearch.value = "";
+    setTimeout(() => {
+        getElement(app_url + "users?q=" + inputSearch.value, tableBody)
+    }, 2000)
 })
 
 tableBody.addEventListener("click", function(e) {

@@ -55,13 +55,7 @@ section #search-form {
 
 section #search {
     border: none;
-    width: 80%;
-}
-
-section #search-btn {
-    width: 20%;
-    background-color: #d9d9d9;
-    cursor: pointer;
+    width: 100%;
 }
 
 section #search-btn:hover {
