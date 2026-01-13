@@ -1,12 +1,16 @@
+/*Import functions from script*/
 import {getElement, postElement, deleteData, putData} from "./script.js"
 
+/*Set const to interact with DOM and Json-Server url */
 const registerBtn = document.querySelector("#register");
 const tableBody = document.querySelector("#table-body");
 const app_url = 'http://localhost:3000/';
 const inputSearch = document.querySelector("#search");
 
+/*Get elements from json-server*/
 getElement(app_url + "users", tableBody)
 
+/*Register a new user */
 registerBtn.addEventListener("click",function() {
     const inputName = document.querySelector("#name");
     const inputLastname = document.querySelector("#lastname");
@@ -16,6 +20,7 @@ registerBtn.addEventListener("click",function() {
     inputLastname.value = "";
 })
 
+/*Search for a user */
 inputSearch.addEventListener("change", function() {
     getElement(app_url + "users?q=" + inputSearch.value, tableBody)
     inputSearch.value = "";
@@ -24,6 +29,7 @@ inputSearch.addEventListener("change", function() {
     }, 2000)
 })
 
+/*Delete for a user */
 tableBody.addEventListener("click", function(e) {
     const data = e.composedPath()[0];
     if(Array.from(data.classList).includes("delete")) {
@@ -31,6 +37,7 @@ tableBody.addEventListener("click", function(e) {
     }
 })
 
+/*Edit for a user */
 tableBody.addEventListener("click", function(e) {
     const data = e.composedPath()[0];
     if(Array.from(data.classList).includes("edit")) {
@@ -46,6 +53,7 @@ tableBody.addEventListener("click", function(e) {
     }
 })
 
+/*Save the modifications */
 tableBody.addEventListener("click", function(e) {
     const data = e.composedPath()[0];
     const id = data.getAttribute("id");

@@ -1,4 +1,5 @@
-//Functions
+//Functions of json-server
+/*Get elements and inner in HTML */
 export async function getElement(url, htmlInnerElement) {
     let items = "";
   try {
@@ -23,6 +24,7 @@ export async function getElement(url, htmlInnerElement) {
   }
 }
 
+/*Post elements to json-server */
 export async function postElement(url, newName, newLastname) {
   try {
     const res = await fetch(url, {
@@ -41,6 +43,7 @@ export async function postElement(url, newName, newLastname) {
   }
 }
 
+/*Delete elements to json-server */
 export async function deleteData(url) {
     try {
     await fetch(url, {
@@ -51,6 +54,7 @@ export async function deleteData(url) {
   }
 }
 
+/*Update elements to json-server */
 export async function putData(url, nameUpdated, lastnameUpdated) {
   try {
     const res = await fetch(url, {
