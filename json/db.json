@@ -1,14 +1,9 @@
 {
   "users": [
     {
-      "id": "1",
       "name": "santiago",
-      "lastname": "zapata"
-    },
-    {
-      "id": "2",
-      "name": "yesica",
-      "lastname": "rendon"
+      "lastname": "rendon",
+      "id": "1"
     },
     {
       "name": "jorge",

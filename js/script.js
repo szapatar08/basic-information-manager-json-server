@@ -7,10 +7,10 @@ export async function getElement(url, htmlInnerElement) {
     let user = "";
     for (user of users) {
         items += `
-        <tr>
+        <tr id="tr-${user.id}">
             <td>${user.id}</td>
-            <td>${user.name}</td>
-            <td>${user.lastname}</td>
+            <td id="name-${user.id}">${user.name}</td>
+            <td id="lastname-${user.id}">${user.lastname}</td>
             <td><button class="edit" id="${user.id}">Edit</button></td>
             <td><button class="delete" id="${user.id}">Delete</button></td>
         </tr>
@@ -48,5 +48,24 @@ export async function deleteData(url) {
     });
   } catch (error) {
     console.error('Error en DELETE:', error);
+  }
+}
+
+export async function putData(url, nameUpdated, lastnameUpdated) {
+  try {
+    const res = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: nameUpdated,
+        lastname: lastnameUpdated
+      })
+    });
+
+    const data = await res.json();
+  } catch (error) {
+    console.error('Error en PUT:', error);
   }
 }

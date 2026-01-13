@@ -1,4 +1,4 @@
-import {getElement, postElement, deleteData} from "./script.js"
+import {getElement, postElement, deleteData, putData} from "./script.js"
 
 const registerBtn = document.querySelector("#register");
 const tableBody = document.querySelector("#table-body");
@@ -33,6 +33,31 @@ tableBody.addEventListener("click", function(e) {
 tableBody.addEventListener("click", function(e) {
     const data = e.composedPath()[0];
     if(Array.from(data.classList).includes("edit")) {
-        console.log("Edit")
+        const id = data.getAttribute("id");
+        const tr = document.querySelector(`#tr-${id}`)
+        tr.innerHTML = `
+            <td>${id}</td>
+            <td><input type="text" id="name-${id}" placeholder="${document.getElementById(`name-${id}`).textContent}"></td>
+            <td><input type="text" id="lastname-${id}" placeholder="${document.getElementById(`lastname-${id}`).textContent}"></td>
+            <td><button class="save" id="${id}">Save</button></td>
+            <td><button class="delete" id="${id}">Delete</button></td>
+        `
+    }
+})
+
+tableBody.addEventListener("click", function(e) {
+    const data = e.composedPath()[0];
+    const id = data.getAttribute("id");
+    const userName = document.getElementById(`name-${id}`);
+    const userLast = document.getElementById(`lastname-${id}`);
+    if(Array.from(data.classList).includes("save")) {
+        console.log(userName.getAttribute("placeholder"), userLast.getAttribute("placeholder"))
+        if (userName.value & userLast.value) {
+            putData(app_url + "users/" + id, userName.value, userLast.value)
+        } else if (userName.value) {
+            putData(app_url + "users/" + id, userName.value, userLast.getAttribute("placeholder"))
+        } else if (userLast.value) {
+            putData(app_url + "users/" + id, userName.getAttribute("placeholder"), userLast.value)
+        }
     }
 })
